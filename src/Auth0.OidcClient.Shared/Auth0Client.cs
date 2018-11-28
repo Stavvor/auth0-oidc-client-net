@@ -146,7 +146,7 @@ namespace Auth0.OidcClient
         }
 
         /// <inheritdoc />
-        public async Task LogoutAsync(bool federated)
+        public async Task<bool> LogoutAsync(bool federated)
         {
             var logoutUrl = $"https://{_options.Domain}/v2/logout";
 
@@ -164,6 +164,7 @@ namespace Auth0.OidcClient
                 Timeout = TimeSpan.FromSeconds((double) logoutRequest.BrowserTimeout),
                 DisplayMode = logoutRequest.BrowserDisplayMode
             });
+            return true;
         }
 
         /// <summary>

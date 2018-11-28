@@ -24,7 +24,7 @@ namespace Auth0.OidcClient
         /// </summary>
         /// <param name="federated">Indicates whether the user should also be logged out of their identity provider.</param>
         /// <returns></returns>
-        Task LogoutAsync(bool federated);
+        Task<bool> LogoutAsync(bool federated);
 
         /// <summary>
         /// Generates an <see cref="IdentityModel.OidcClient.AuthorizeState"/> containing the URL, state, nonce and code challenge which can

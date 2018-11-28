@@ -23,14 +23,14 @@ namespace Auth0.OidcClient
         /// Launches a browser to log the user out and clear the Auth0 SSO Cookie
         /// </summary>
         /// <returns></returns>
-        Task LogoutAsync();
+        Task<BrowserResultType> LogoutAsync();
 
         /// <summary>
         /// Launches a browser to log the user out and clear the Auth0 SSO Cookie
         /// </summary>
         /// <param name="federated">Indicates whether the user should also be logged out of their identity provider.</param>
         /// <returns></returns>
-        Task<bool> LogoutAsync(bool federated);
+        Task<BrowserResultType> LogoutAsync(bool federated);
 
         /// <summary>
         /// Generates an <see cref="IdentityModel.OidcClient.AuthorizeState"/> containing the URL, state, nonce and code challenge which can
@@ -189,13 +189,13 @@ namespace Auth0.OidcClient
         /// Launches a browser to log the user out and clear the Auth0 SSO Cookie
         /// </summary>
         /// <returns></returns>
-        public Task LogoutAsync()
+        public Task<BrowserResultType> LogoutAsync()
         {
             return LogoutAsync(false);
         }
 
         /// <inheritdoc />
-        public async Task<bool> LogoutAsync(bool federated)
+        public async Task<BrowserResultType> LogoutAsync(bool federated)
         {
             var logoutUrl = $"https://{_options.Domain}/v2/logout";
 
@@ -213,7 +213,8 @@ namespace Auth0.OidcClient
                 Timeout = TimeSpan.FromSeconds((double) logoutRequest.BrowserTimeout),
                 DisplayMode = logoutRequest.BrowserDisplayMode
             });
-            return true;
+
+            return browserResult.ResultType;
         }
 
         /// <summary>

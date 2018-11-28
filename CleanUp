@@ -1,0 +1,6 @@
+#!/bin/bash
+
+find . -iname "bin" -type d | xargs rm -rf
+find . -iname "obj" -type d | xargs rm -rf
+
+echo "cleaning done!"

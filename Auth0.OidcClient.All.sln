@@ -10,9 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{3D6D8AA1
 		nuget\Auth0.OidcClient.Android.nuspec = nuget\Auth0.OidcClient.Android.nuspec
 		nuget\Auth0.OidcClient.Core.nuspec = nuget\Auth0.OidcClient.Core.nuspec
 		nuget\Auth0.OidcClient.iOS.nuspec = nuget\Auth0.OidcClient.iOS.nuspec
-		nuget\Auth0.OidcClient.UWP.nuspec = nuget\Auth0.OidcClient.UWP.nuspec
-		nuget\Auth0.OidcClient.WinForms.nuspec = nuget\Auth0.OidcClient.WinForms.nuspec
-		nuget\Auth0.OidcClient.WPF.nuspec = nuget\Auth0.OidcClient.WPF.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth0.OidcClient.Android", "src\Auth0.OidcClient.Android\Auth0.OidcClient.Android.csproj", "{A18A146B-FB5A-4AB8-8F1C-501E58AA7D4D}"

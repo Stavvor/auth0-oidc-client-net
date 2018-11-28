@@ -11,5 +11,6 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Auth0Client.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Auth0ClientOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IAuth0Client.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
 </Project>

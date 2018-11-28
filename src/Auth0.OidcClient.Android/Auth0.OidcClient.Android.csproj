@@ -54,6 +54,7 @@
     <Compile Include="PlatformWebView.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IAuth0Client.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' " />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

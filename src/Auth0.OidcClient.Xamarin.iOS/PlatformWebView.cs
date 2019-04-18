@@ -42,22 +42,33 @@ namespace Auth0.OidcClient
 		            options.EndUrl,
 		            (callbackUrl, error) =>
 		            {
-		                if (error != null)
+		                try
+		                {
+		                    if (error != null)
+		                    {
+		                        tcs.SetResult(new BrowserResult
+		                        {
+		                            ResultType = BrowserResultType.UserCancel,
+		                            Error = error.ToString()
+		                        });
+		                    }
+		                    else
+		                    {
+		                        tcs.SetResult(new BrowserResult
+		                        {
+		                            ResultType = BrowserResultType.Success,
+		                            Response = callbackUrl.AbsoluteString
+		                        });
+		                    }
+		                }
+		                catch (Exception ex)
 		                {
 		                    tcs.SetResult(new BrowserResult
 		                    {
-		                        ResultType = BrowserResultType.UserCancel,
-		                        Error = error.ToString()
+		                        ResultType = BrowserResultType.UnknownError,
+		                        Response = ex.ToString(),
 		                    });
-		                }
-		                else
-		                {
-		                    tcs.SetResult(new BrowserResult
-		                    {
-		                        ResultType = BrowserResultType.Success,
-		                        Response = callbackUrl.AbsoluteString
-		                    });
-		                }
+                        }
 		            });
 
 		        // launch authentication session

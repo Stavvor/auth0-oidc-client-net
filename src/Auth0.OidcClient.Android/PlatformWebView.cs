@@ -30,20 +30,32 @@ namespace Auth0.OidcClient
                 // remove handler
                 ActivityMediator.Instance.ActivityMessageReceived -= Callback;
 
-                // set result
-                if (response == "UserCancel")
+                try
                 {
-                    tcs.SetResult(new BrowserResult { ResultType = BrowserResultType.UserCancel });
+                    // set result
+                    if (response == "UserCancel")
+                    {
+                        tcs.SetResult(new BrowserResult {ResultType = BrowserResultType.UserCancel});
+                    }
+                    else
+                    {
+                        tcs.SetResult(new BrowserResult
+                        {
+                            Response = response,
+                            ResultType = BrowserResultType.Success
+                        });
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
                     tcs.SetResult(new BrowserResult
                     {
-                        Response = response,
-                        ResultType = BrowserResultType.Success
+                        Response = ex.ToString(),
+                        ResultType = BrowserResultType.UnknownError
                     });
                 }
-            }
+
+        }
 
             // attach handler
             ActivityMediator.Instance.ActivityMessageReceived += Callback;

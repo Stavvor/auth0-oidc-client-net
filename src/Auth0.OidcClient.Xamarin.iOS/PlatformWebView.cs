@@ -24,10 +24,10 @@ namespace Auth0.OidcClient
 				throw new ArgumentException("Missing StartUrl", nameof(options));
 			}
 
-			if (string.IsNullOrWhiteSpace(options.EndUrl))
-			{
-				throw new ArgumentException("Missing EndUrl", nameof(options));
-			}
+			//if (string.IsNullOrWhiteSpace(options.EndUrl))
+			//{
+			//	throw new ArgumentException("Missing EndUrl", nameof(options));
+			//}
 
 			// must be able to wait for the authentication session to be finished to continue
 			// with setting the task result
@@ -61,14 +61,7 @@ namespace Auth0.OidcClient
 		                        });
 		                    }
 		                }
-		                catch (Exception ex)
-		                {
-		                    tcs.SetResult(new BrowserResult
-		                    {
-		                        ResultType = BrowserResultType.UnknownError,
-		                        Response = ex.ToString(),
-		                    });
-                        }
+		                catch (InvalidOperationException) { }
 		            });
 
 		        // launch authentication session

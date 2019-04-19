@@ -16,10 +16,10 @@ namespace Auth0.OidcClient
                 throw new ArgumentException("Missing StartUrl", nameof(options));
             }
 
-            if (string.IsNullOrWhiteSpace(options.EndUrl))
-            {
-                throw new ArgumentException("Missing EndUrl", nameof(options));
-            }
+            //if (string.IsNullOrWhiteSpace(options.EndUrl))
+            //{
+            //    throw new ArgumentException("Missing EndUrl", nameof(options));
+            //}
 
             // must be able to wait for the intent to be triggered to continue
             // with setting the task result
@@ -46,16 +46,8 @@ namespace Auth0.OidcClient
                         });
                     }
                 }
-                catch (Exception ex)
-                {
-                    tcs.SetResult(new BrowserResult
-                    {
-                        Response = ex.ToString(),
-                        ResultType = BrowserResultType.UnknownError
-                    });
-                }
-
-        }
+                catch (InvalidOperationException) { }
+            }
 
             // attach handler
             ActivityMediator.Instance.ActivityMessageReceived += Callback;
